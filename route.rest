@@ -1,0 +1,29 @@
+
+GET http://localhost:3000/laundry
+
+###
+
+POST http://localhost:3000/laundry
+Content-Type: application/json
+
+{
+    "nama":"Dede",
+    "jenis":"Lepis",
+    "type":"Celana"
+}
+
+
+###
+GET http://localhost:3000/laundry/64eec8f77f9bcd7412e5d307
+
+###
+
+DELETE http://localhost:3000/laundry/64eec8f77f9bcd7412e5d307
+
+###
+PATCH http://localhost:3000/laundry/64eec8f77f9bcd7412e5d307
+Content-Type: application/json
+
+{
+    "nama":"Dede 2"
+}
