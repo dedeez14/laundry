@@ -36,3 +36,11 @@ GET http://localhost:3000/laundry/filter/Rahma
 
 ###
 GET http://localhost:3000/laundry/search/baju
+
+
+###
+GET http://localhost:3000/laundry/generate_laundry_data
+
+
+###
+GET http://localhost:3000/laundry/delete_all_laundry

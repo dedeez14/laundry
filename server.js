@@ -10,8 +10,18 @@ db.on('error', (error) => console.log(error))
 db.once('open', () => console.log('Connected to database'))
 
 app.use(express.json())
-const router = require('./router/route')
-app.use('/laundry', router)
+
+
+const laundryRoute = require('./router/laundryRoute')
+const pegawaiRoute = require('./router/pegawaiRoute')
+const customerRoute = require('./router/customerRoute')
+
+
+app.use('/laundry', laundryRoute)
+app.use('/pegawai', pegawaiRoute)
+app.use('/customer', customerRoute)
+
+
 
 app.listen(3000, () => {
     console.log('server berjalan pada port 3000')

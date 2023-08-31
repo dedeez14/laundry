@@ -1,0 +1,46 @@
+
+GET http://localhost:3000/customer
+
+###
+
+POST http://localhost:3000/customer
+Content-Type: application/json
+
+{
+    "nama":"ASD",
+    "jenis":"Katun",
+    "type":"Baju"
+}
+
+
+###
+GET http://localhost:3000/customer/64f0044a3478915641433cad
+
+###
+
+DELETE http://localhost:3000/customer/64f0044a3478915641433cad
+
+###
+PATCH http://localhost:3000/customer/64f00486ab8cc942031bc557
+Content-Type: application/json
+
+{
+    "nama":"Dede 2SAD"
+}
+
+
+###
+
+GET http://localhost:3000/customer/filter/Rahma
+
+
+###
+GET http://localhost:3000/customer/search/baju
+
+
+###
+GET http://localhost:3000/customer/generate_customer_data
+
+
+###
+GET http://localhost:3000/customer/delete_all_customer

@@ -15,7 +15,7 @@ const laundrySchema = new mongoose.Schema({
     },
     jam_masuk: {
         type: String,
-        required: true,
+        required: false,
         default: Date.now
     }
 })
