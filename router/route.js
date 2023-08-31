@@ -11,6 +11,18 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/cari/:query', async (req, res) => {
+    const { query } = req.params
+    console.log(query)
+    try {
+        const regex = new RegExp(query, 'i')
+        const ketemu = await Laundry.find({nama: regex})
+        res.json(ketemu)
+    } catch(err){
+        res.status(500).json({err: err.message})
+    }
+})
+
 router.get('/:id', getData,(req, res) => {
     res.send(res.data.nama)
 })

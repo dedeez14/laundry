@@ -7,8 +7,8 @@ POST http://localhost:3000/laundry
 Content-Type: application/json
 
 {
-    "nama":"Dede",
-    "jenis":"Lepis",
+    "nama":"Digung",
+    "jenis":"Katun",
     "type":"Celana"
 }
 
@@ -27,3 +27,8 @@ Content-Type: application/json
 {
     "nama":"Dede 2"
 }
+
+
+###
+
+GET http://localhost:3000/laundry/cari_nama/Lepis
