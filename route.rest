@@ -7,28 +7,32 @@ POST http://localhost:3000/laundry
 Content-Type: application/json
 
 {
-    "nama":"Digung",
+    "nama":"ASD",
     "jenis":"Katun",
-    "type":"Celana"
+    "type":"Baju"
 }
 
 
 ###
-GET http://localhost:3000/laundry/64eec8f77f9bcd7412e5d307
+GET http://localhost:3000/laundry/64f0044a3478915641433cad
 
 ###
 
-DELETE http://localhost:3000/laundry/64eec8f77f9bcd7412e5d307
+DELETE http://localhost:3000/laundry/64f0044a3478915641433cad
 
 ###
-PATCH http://localhost:3000/laundry/64eec8f77f9bcd7412e5d307
+PATCH http://localhost:3000/laundry/64f00486ab8cc942031bc557
 Content-Type: application/json
 
 {
-    "nama":"Dede 2"
+    "nama":"Dede 2SAD"
 }
 
 
 ###
 
-GET http://localhost:3000/laundry/cari_nama/Lepis
+GET http://localhost:3000/laundry/filter/Rahma
+
+
+###
+GET http://localhost:3000/laundry/search/baju

@@ -11,9 +11,24 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/cari/:query', async (req, res) => {
+router.get('/search/:query', async (req, res) => {
+    const query = req.params.query;
+    try {
+      const hasil = await Laundry.find({
+        $or: [
+          { nama: { $regex: query, $options: 'i' } },
+          { jenis: { $regex: query, $options: 'i' } },
+          { type: { $regex: query, $options: 'i' } }
+        ]
+      });
+      res.json(hasil);
+    } catch (err) {
+      res.status(500).json({ err: err.message });
+    }
+  });
+
+router.get('/filter/:query', async (req, res) => {
     const { query } = req.params
-    console.log(query)
     try {
         const regex = new RegExp(query, 'i')
         const ketemu = await Laundry.find({nama: regex})
@@ -87,7 +102,7 @@ async function getData(req, res, next){
     try {
         data = await Laundry.findById(req.params.id)
         if(data == null){
-            return res.status(404).json({message: "Cannot Find data Laundry"})
+            return res.status(404).json({message: "Tidak menemukan data"})
         }
     }catch(err){
         return res.status(500).json({message: err.message})
