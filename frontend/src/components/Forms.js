@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form'
 
 
-const Forms1 = () => {
+const FormTerimaCucian = () => {
     return (
         <>
             <Form.Control type="text" placeholder="Normal text" />
@@ -9,4 +9,4 @@ const Forms1 = () => {
     )
 }
 
-export const DaftarPelanggan = () => <Forms1 />
+export const TerimaCucian = () => <FormTerimaCucian />

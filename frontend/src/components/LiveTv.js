@@ -5,13 +5,11 @@ const Live = () => {
     <div className='text-center'>
       <iframe
         title="Live Youtube"
-        width="627"
+        width="605"
         height="315"
-        src="https://www.youtube.com/embed/RYvpQ1iVqlQ"
-        frameBorder="1"
+        src="https://www.youtube.com/embed/RYvpQ1iVqlQ?autoplay=1&loop=1&controls=0&modestbranding=1&showinfo=0"
         style={{ border: '5px solid #000' }}
         allowFullScreen
-        rounded
       ></iframe>
     </div>
   );
