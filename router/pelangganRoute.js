@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const Customer = require('../models/customerModel')
+const Pelanggan = require('../models/pelangganModel')
 const faker = require('faker')
 
 router.get('/', async (req, res) => {
     try {
-        const customer_data = await Customer.find()
-        res.json(customer_data)
+        const pelanggan_data = await Pelanggan.find()
+        res.json(pelanggan_data)
     } catch(err){
         res.status(500).json({message: err.message})
     }
@@ -15,12 +15,11 @@ router.get('/', async (req, res) => {
 router.get('/search/:query', async (req, res) => {
     const query = req.params.query;
     try {
-      const hasil = await Customer.find({
+      const hasil = await Pelanggan.find({
         $or: [
-          { nama: { $regex: query, $options: 'i' } },
-          { jenis: { $regex: query, $options: 'i' } },
-          { berat_barang: { $regex: query, $options: 'i' } },
-          { no_hp: { $regex: query, $options: 'i' } }
+          { nama_pelanggan: { $regex: query, $options: 'i' } },
+          { alamat: { $regex: query, $options: 'i' } },
+          { nomor_telpon: { $regex: query, $options: 'i' } }
         ]
       });
       res.json(hasil);
@@ -33,34 +32,33 @@ router.get('/filter/:query', async (req, res) => {
     const { query } = req.params
     try {
         const regex = new RegExp(query, 'i')
-        const ketemu = await Customer.find({nama: regex})
+        const ketemu = await Pelanggan.find({nama_pelanggan: regex})
         res.json(ketemu)
     } catch(err){
         res.status(500).json({err: err.message})
     }
 })
 
-router.get('/generate_customer_data', async (req, res) => {
+router.get('/generate_pelanggan', async (req, res) => {
     try {
         const num = 10;
         for (let i = 0; i < num; i++) {
-            const newCustomer = new Customer({
-                nama: faker.name.findName(),
-                jenis: faker.helpers.randomize(['Katun','Lepis']),
-                berat_barang: faker.helpers.randomize(['1KG','5KG','10KG','15KG','20KG']),
-                no_hp: faker.phone.number('+62 ###-####-####')
+            const newPelanggan = new Pelanggan({
+                nama_pelanggan: faker.name.findName(),
+                alamat: faker.address.state(),
+                nomor_telpon: faker.phone.number('+62 ###-####-####')
             })
-            await newCustomer.save()
+            await newPelanggan.save()
         }
-        res.json({message: `${num} data customer berhasil terbuat`})
+        res.json({message: `${num} data pelanggan berhasil terbuat`})
     } catch(err){
         res.status(500).json({err: err.message})
     }
 })
 
-router.get('/delete_all_laundry', async (req, res) => {
+router.get('/delete_all', async (req, res) => {
     try {
-        const hasil = await Customer.deleteMany({})
+        const hasil = await Pelanggan.deleteMany({})
         res.json({message: `${hasil.deletedCount} data berhasil di hapus`})
     } catch(err){
         res.status(500).json({err: err.message})
@@ -68,14 +66,19 @@ router.get('/delete_all_laundry', async (req, res) => {
 })
 
 router.get('/:id', getData,(req, res) => {
-    res.send(res.data.nama)
+    const data = {
+        nama:res.data.nama_pelanggan,
+        alamat:res.data.alamat,
+        nomor_telpon:res.data.nomor_telpon
+    }
+    res.send(data)
 })
 
 router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id;
         
-        const result = await Customer.deleteById(id);
+        const result = await Pelanggan.deleteById(id);
         if (result.deletedCount === 0) {
             return res.status(404).json({ message: "Data not found" });
         }
@@ -87,20 +90,16 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.patch('/:id', getData, async (req, res) => {
-    if(req.body.nama != null){
-        res.data.nama = req.body.nama
+    if(req.body.nama_pelanggan != null){
+        res.data.nama_pelanggan = req.body.nama_pelanggan
     }
 
-    if(req.body.jenis != null){
-        res.data.jenis = req.body.jenis
+    if(req.body.alamat != null){
+        res.data.alamat = req.body.alamat
     }
 
-    if(req.body.berat_barang != null){
-        res.data.berat_barang = req.body.berat_barang
-    }
-
-    if(req.body.no_hp != null){
-        res.data.no_hp = req.body.no_hp
+    if(req.body.nomor_telpon != null){
+        res.data.nomor_telpon = req.body.nomor_telpon
     }
 
     try{
@@ -113,18 +112,17 @@ router.patch('/:id', getData, async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const customer = new Customer({
-        nama: req.body.nama,
-        jenis: req.body.jenis,
-        berat_barang: req.body.berat_barang,
-        no_hp: req.body.no_hp
+    const pelanggan = new Pelanggan({
+        nama_pelanggan: req.body.nama_pelanggan,
+        alamat: req.body.alamat,
+        nomor_telpon: req.body.nomor_telpon
     })
 
     try {
-        const newCustomer = await customer.save()
+        const newPelanggan = await pelanggan.save()
         res.status(201).json({
             message: "Data Berhasil di tambahkan",
-            data: newCustomer
+            data: newPelanggan
         })
     } catch(err){
         res.status(400).json({message: err.message})
@@ -134,7 +132,7 @@ router.post('/', async (req, res) => {
 async function getData(req, res, next){
     let data
     try {
-        data = await Customer.findById(req.params.id)
+        data = await Pelanggan.findById(req.params.id)
         if(data == null){
             return res.status(404).json({message: "Tidak menemukan data"})
         }

@@ -1,0 +1,24 @@
+/* App.css */
+body {
+  background-color: #053B50;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.badge-tron {
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  animation: badge-tron 10s linear infinite;
+}
+
+@keyframes badge-tron {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

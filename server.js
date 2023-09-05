@@ -1,28 +1,35 @@
 require('dotenv').config()
 
 const express = require('express')
-const app = express()
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
-mongoose.connect(process.env.DBURL, { useNewUrlParser: true })
+const pelangganRoute = require('./router/pelangganRoute')
+const pesananRoute = require('./router/pesananRoute')
+const detailPesananRoute = require('./router/detailPesananRoute')
+const itemLaundryRoute = require('./router/itemLaundryRoute')
+const laundryRoute = require('./router/laundryRoute')
+
+
+const app = express()
+
+mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 db.once('open', () => console.log('Connected to database'))
 
-app.use(express.json())
+app.use(cors());
+app.use(bodyParser.json());
 
-
-const laundryRoute = require('./router/laundryRoute')
-const pegawaiRoute = require('./router/pegawaiRoute')
-const customerRoute = require('./router/customerRoute')
-
-
+app.use('/pelanggan', pelangganRoute)
+app.use('/pesanan', pesananRoute)
+app.use('/detail_pesanan', detailPesananRoute)
+app.use('/item_laundry', itemLaundryRoute)
 app.use('/laundry', laundryRoute)
-app.use('/pegawai', pegawaiRoute)
-app.use('/customer', customerRoute)
 
 
 
-app.listen(3000, () => {
-    console.log('server berjalan pada port 3000')
+app.listen(4000, () => {
+    console.log('server berjalan pada port 4000')
 })

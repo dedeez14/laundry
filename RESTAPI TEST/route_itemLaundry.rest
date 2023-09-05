@@ -1,0 +1,49 @@
+
+GET http://localhost:3000/item_laundry
+
+###
+
+POST http://localhost:3000/item_laundry
+Content-Type: application/json
+
+{
+    "nama_item":"SEPATU BOBOBOI Anak",
+    "jenis_item":"Sepatu",
+    "harga_per_item":"10"
+}
+
+
+###
+GET http://localhost:3000/item_laundry/64f03d5539550ffc0eb325d6
+
+###
+
+DELETE http://localhost:3000/item_laundry/64f03d5539550ffc0eb325d6
+
+###
+PATCH http://localhost:3000/item_laundry/64f03d7439550ffc0eb325da
+Content-Type: application/json
+
+{
+    "nama":"Ahmad"
+}
+
+
+###
+
+GET http://localhost:3000/item_laundry/filter/ahmad
+
+
+###
+GET http://localhost:3000/item_laundry/search/kasir
+
+
+###
+POST http://localhost:3000/item_laundry/generate_item
+
+
+###
+GET http://localhost:3000/item_laundry/delete_all_pelanggan
+
+
+###

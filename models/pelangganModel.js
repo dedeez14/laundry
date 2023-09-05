@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const pegawaiSchema = new mongoose.Schema({
-    nama: {
+const pelangganSchema = new mongoose.Schema({
+    nama_pelanggan: {
         type: String,
         required: true
     },
@@ -9,13 +9,13 @@ const pegawaiSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    posisi: {
+    nomor_telpon: {
         type: String,
         required: true
-    }
+    },
 })
 
-pegawaiSchema.statics.deleteById = async function(id) {
+pelangganSchema.statics.deleteById = async function(id) {
     try {
         const result = await this.deleteOne({ _id: id });
         return result;
@@ -24,4 +24,4 @@ pegawaiSchema.statics.deleteById = async function(id) {
     }
 };
 
-module.exports = mongoose.model('pegawai', pegawaiSchema)
+module.exports = mongoose.model('pelanggan', pelangganSchema)

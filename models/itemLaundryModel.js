@@ -1,25 +1,21 @@
 const mongoose = require('mongoose')
 
-const customerSchema = new mongoose.Schema({
-    nama: {
+const itemLaundrySchema = new mongoose.Schema({
+    nama_item: {
         type: String,
         required: true
     },
-    jenis: {
+    jenis_item: {
         type: String,
         required: true
     },
-    berat_barang: {
-        type: String,
-        required: true
-    },
-    no_hp: {
+    harga_per_item: {
         type: String,
         required: true
     },
 })
 
-customerSchema.statics.deleteById = async function(id) {
+itemLaundrySchema.statics.deleteById = async function(id) {
     try {
         const result = await this.deleteOne({ _id: id });
         return result;
@@ -28,4 +24,4 @@ customerSchema.statics.deleteById = async function(id) {
     }
 };
 
-module.exports = mongoose.model('Customer', customerSchema)
+module.exports = mongoose.model('ItemLaundry', itemLaundrySchema)

@@ -1,32 +1,24 @@
-const mongoose = require('mongoose')
+const Pesanan = require('./pesananModel');
+const ItemLaundry = require('./itemLaundryModel');
 
-const laundrySchema = new mongoose.Schema({
-    nama: {
-        type: String,
-        required: true
-    },
-    jenis: {
-        type: String,
-        required: true
-    },
-    type: {
-        type: String,
-        required: true
-    },
-    jam_masuk: {
-        type: String,
-        required: false,
-        default: Date.now
-    }
-})
-
-laundrySchema.statics.deleteById = async function(id) {
+const LaundryModel = {
+  findPesananByPelangganId: async (pelangganId) => {
     try {
-        const result = await this.deleteOne({ _id: id });
-        return result;
+      const pesanan = await Pesanan.find({ pelangganId }).populate('pelangganId').populate('items.itemLaundryId');
+      return pesanan;
     } catch (error) {
-        throw error;
+      throw error;
     }
+  },
+
+  findAllItemLaundry: async () => {
+    try {
+      const items = await ItemLaundry.find();
+      return items;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
-module.exports = mongoose.model('Laundry', laundrySchema)
+module.exports = LaundryModel;

@@ -1,0 +1,49 @@
+
+GET http://localhost:4000/pelanggan
+
+###
+
+POST http://localhost:4000/pelanggan
+Content-Type: application/json
+
+{
+    "nama_pelanggan":"Ahmad Albar 2",
+    "alamat":"Kp. Budi Ancoe Jl. Jimba No29 RT 015/02",
+    "nomor_telpon":"+62 829 8729 0819"
+}
+
+
+###
+GET http://localhost:4000/pelanggan/64f69344f1bec0fd11f76b3d
+
+###
+
+DELETE http://localhost:4000/pelanggan/64f69473fce94fb954fcc92b
+
+###
+PATCH http://localhost:4000/pelanggan/64f69488fce94fb954fcc92e
+Content-Type: application/json
+
+{
+    "nama_pelanggan":"Jaki2"
+}
+
+
+###
+
+GET http://localhost:4000/pelanggan/filter/ahmad
+
+
+###
+GET http://localhost:4000/pelanggan/search/kasir
+
+
+###
+GET http://localhost:4000/pelanggan/generate_pelanggan_data
+
+
+###
+GET http://localhost:4000/pelanggan/delete_all_pelanggan
+
+
+###

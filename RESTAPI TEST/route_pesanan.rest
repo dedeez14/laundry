@@ -1,0 +1,46 @@
+
+GET http://localhost:3000/detail_pesanan
+
+###
+
+POST http://localhost:3000/detail_pesanan
+Content-Type: application/json
+
+{
+    "pesanan_id":"64f1576cd5beb81aae031b2f",
+    "item_id":"64f1525543551981dc1feaea",
+    "jumlah_item":"19"
+}
+
+
+###
+GET http://localhost:3000/detail_pesanan/64f162ccf13ac31a3ce7a72c
+
+###
+
+DELETE http://localhost:3000/detail_pesanan/64f0044a3478915641433cad
+
+###
+PATCH http://localhost:3000/detail_pesanan/64f00486ab8cc942031bc557
+Content-Type: application/json
+
+{
+    "nama":"Dede 2SAD"
+}
+
+
+###
+
+GET http://localhost:3000/detail_pesanan/filter/Rahma
+
+
+###
+GET http://localhost:3000/detail_pesanan/search/baju
+
+
+###
+GET http://localhost:3000/detail_pesanan/generate_laundry_data
+
+
+###
+GET http://localhost:3000/detail_pesanan/delete_all_laundry
